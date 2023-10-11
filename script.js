@@ -5,12 +5,28 @@ const searchbox = document.querySelector(".search input");
 const searchbtn = document.querySelector(".search button");
 const weatherIcon = document.querySelector(".weather-icon");
 const dateElement = document.querySelector(".date");
+const clockElement = document.getElementById('clock');
+
+function updateClock() {
+  const now = new Date();
+  const options = {
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+  };
+
+  const timeString = now.toLocaleTimeString('en-US', options);
+  clockElement.textContent = timeString;
+}
+updateClock();
+setInterval(updateClock, 1000);
 
 function displayTodayDate() {
-  const options = {weekday: "long", month: "long", day: "numeric" };
+  const options = {weekday: "long", month: "long", day: "numeric", year: "numeric" };
   const today = new Date();
   dateElement.innerHTML = today.toLocaleDateString(undefined, options);
   console.log(today);
+  
 }
 
 async function checkWeather(city) {
@@ -32,6 +48,7 @@ async function checkWeather(city) {
   document.querySelector(".weathertype").innerHTML = data.weather[0].main;
   document.querySelector(".humidity").innerHTML = data.main.humidity + "%";
   document.querySelector(".wind").innerHTML = data.wind.speed + " km/h";
+
   if (data.weather[0].main == "Clouds") {
     weatherIcon.src = "img/clouds.png";
   } else if (data.weather[0].main == "Clear") {
@@ -50,6 +67,7 @@ async function checkWeather(city) {
 searchbtn.addEventListener("click", () => {
   checkWeather(searchbox.value);
   displayTodayDate();
+  setInterval(updateClock, 1000);
 });
 
 
