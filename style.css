@@ -120,5 +120,12 @@ body{
     margin-top: 10px;
     display: none;
 }
+ 
+footer{
+    text-align: center;
+  justify-content: center;
+  align-items: center;
+  
+}
 
 
