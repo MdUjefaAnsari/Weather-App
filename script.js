@@ -7,26 +7,20 @@ const weatherIcon = document.querySelector(".weather-icon");
 const dateElement = document.querySelector(".date");
 const clockElement = document.getElementById('clock');
 
-function updateClock() {
-  const now = new Date();
-  const options = {
+function displayTodayDate() {
+  const options = {weekday: "long", month: "long", day: "numeric", year: "numeric" };
+  const today = new Date();
+  dateElement.innerHTML = today.toLocaleDateString(undefined, options);
+ 
+  const timing = {
       hour: '2-digit',
       minute: '2-digit',
       second: '2-digit',
   };
 
-  const timeString = now.toLocaleTimeString('en-US', options);
+  const timeString = today.toLocaleTimeString('en-US', timing);
   clockElement.textContent = timeString;
-}
-updateClock();
-setInterval(updateClock, 1000);
-
-function displayTodayDate() {
-  const options = {weekday: "long", month: "long", day: "numeric", year: "numeric" };
-  const today = new Date();
-  dateElement.innerHTML = today.toLocaleDateString(undefined, options);
   console.log(today);
-  
 }
 
 async function checkWeather(city) {
@@ -67,7 +61,7 @@ async function checkWeather(city) {
 searchbtn.addEventListener("click", () => {
   checkWeather(searchbox.value);
   displayTodayDate();
-  setInterval(updateClock, 1000);
+  setInterval(displayTodayDate, 1000);
 });
 
 
