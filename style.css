@@ -145,10 +145,7 @@ body {
 #clock{
     color: #00ffbb;
 }
-datalist option{
-    background-color: #00ffbb;
-    width: 500px;
-}
+
 
 footer {
     text-align: center;
