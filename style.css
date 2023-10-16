@@ -73,7 +73,8 @@ body {
 }
 
 .search button:hover {
-    background: linear-gradient(123deg, #00feba4d, #e029b255);
+    background: linear-gradient(123deg, #51ffd1, #ff63d8);
+    color: white;
 }
 
 .search button img {
